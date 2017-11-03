@@ -1,0 +1,6 @@
+dist/
+node_modules/
+*.bat
+*.sh
+*.sublime-workspace
+*.sublime-project

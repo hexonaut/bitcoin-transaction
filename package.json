@@ -1,0 +1,28 @@
+{
+  "name": "bitcoin-transaction",
+  "version": "1.0.0",
+  "description": "Send BitCoins from one wallet to another. This is designed to be as simple to use as possible.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Blank101/bitcoin-transaction.git"
+  },
+  "keywords": [
+    "bitcoin",
+    "transaction",
+    "wallet"
+  ],
+  "author": "Sam MacPherson",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Blank101/bitcoin-transaction/issues"
+  },
+  "homepage": "https://github.com/Blank101/bitcoin-transaction#readme",
+  "dependencies": {
+    "bitcoinjs-lib": "^3.3.0",
+    "superagent": "^3.8.0"
+  }
+}
