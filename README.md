@@ -1,0 +1,3 @@
+# bitcoin-transaction
+
+The simpliest way to send bitcoins from one wallet to another using javascript. This library will hook into popular third party services such as blockchain.info and blockexplorer.com to do all the heavy lifting in sending a bitcoin transaction. Other libraries require you to parse 3rd party apis or run external software to send a transaction. This library is meant to be as simple as possible while still allowing for customization.
