@@ -158,7 +158,7 @@ function sendTransaction (options) {
 	if (options.from == null) throw "Must specify from address.";
 	if (options.to == null) throw "Must specify to address.";
 	if (options.btc == null) throw "Must specify amount of btc to send.";
-	if (options.privKeyWIP == null) throw "Must specify the wallet's private key in WIP format.";
+	if (options.privKeyWIF == null) throw "Must specify the wallet's private key in WIF format.";
 
 	//Optionals
 	if (options.network == null) options.network = 'mainnet';
@@ -203,7 +203,7 @@ function sendTransaction (options) {
 		if (fee > amtSatoshi) throw "BitCoin amount must be larger than the fee. (Ideally it should be MUCH larger)";
 		tx.addOutput(to, amtSatoshi - fee);
 		if (change > 0) tx.addOutput(from, change);
-		var keyPair = bitcoin.ECPair.fromWIF(options.privKeyWIP, bitcoinNetwork);
+		var keyPair = bitcoin.ECPair.fromWIF(options.privKeyWIF, bitcoinNetwork);
 		for (var i = 0; i < ninputs; i++) {
 			tx.sign(i, keyPair);
 		}
