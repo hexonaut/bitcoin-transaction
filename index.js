@@ -146,7 +146,7 @@ function getTransactionSize (numInputs, numOutputs) {
 
 function getFees (provider, feeName) {
 	if (typeof feeName === 'number') {
-		return new Promise.resolve(feeName);
+		return Promise.resolve(feeName);
 	} else {
 		return provider(feeName);
 	}
