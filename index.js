@@ -15,11 +15,6 @@ var providers = {
 				return request.get('https://blockexplorer.com/api/addr/' + addr + '/balance').send().then(function (res) {
 					return parseFloat(res.body);
 				});
-			},
-			blockchain: function (addr) {
-				return request.get('https://blockchain.info/q/addressbalance/' + addr + '?confirmations=6').send().then(function (res) {
-					return parseFloat(res.body);
-				});
 			}
 		},
 		testnet: {
@@ -166,12 +161,14 @@ function sendTransaction (options) {
 	if (options.feesProvider == null) options.feesProvider = providers.fees[options.network].default;
 	if (options.utxoProvider == null) options.utxoProvider = providers.utxo[options.network].default;
 	if (options.pushtxProvider == null) options.pushtxProvider = providers.pushtx[options.network].default;
+	if (options.confirmations == null) options.confirmations = 6; else if (options.confirmations < 0) throw "Number of confirmations can't be smaller than zero";
 	if (options.dryrun == null) options.dryrun = false;
 
 	var from = options.from;
 	var to = options.to;
 	var amount = options.btc;
 	var amtSatoshi = Math.floor(amount*BITCOIN_SAT_MULT);
+	var confirmations = options.confirmations;
 	var bitcoinNetwork = options.network == "testnet" ? bitcoin.networks.testnet : bitcoin.networks.bitcoin;
 
 	return Promise.all([
@@ -187,7 +184,7 @@ function sendTransaction (options) {
 		var availableSat = 0;
 		for (var i = 0; i < utxos.length; i++) {
 			var utxo = utxos[i];
-			if (utxo.confirmations >= 6) {
+			if (utxo.confirmations >= confirmations) {
 				tx.addInput(utxo.txid, utxo.vout);
 				availableSat += utxo.satoshis;
 				ninputs++;
