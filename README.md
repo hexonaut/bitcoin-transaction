@@ -76,4 +76,5 @@ Option | Default | Description
 **utxoProvider** | providers.utxo[NETWORK].default | Set the service provider to fetch the utxos.
 **pushtxProvider** | providers.pushtx[NETWORK].default | Set the service provider to push the transaction raw hex code.
 **dryrun** | false | This will not push the transaction, but instead return it as a hex string. Useful for debugging.
+**minConfirmations** | 6 | The minimum number of confirmations needed for UTXOs
 

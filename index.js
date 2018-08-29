@@ -167,6 +167,7 @@ function sendTransaction (options) {
 	if (options.utxoProvider == null) options.utxoProvider = providers.utxo[options.network].default;
 	if (options.pushtxProvider == null) options.pushtxProvider = providers.pushtx[options.network].default;
 	if (options.dryrun == null) options.dryrun = false;
+	if (options.minConfirmations == null) options.minConfirmations = 6;
 
 	var from = options.from;
 	var to = options.to;
@@ -187,7 +188,7 @@ function sendTransaction (options) {
 		var availableSat = 0;
 		for (var i = 0; i < utxos.length; i++) {
 			var utxo = utxos[i];
-			if (utxo.confirmations >= 6) {
+			if (utxo.confirmations >= options.minConfirmations) {
 				tx.addInput(utxo.txid, utxo.vout);
 				availableSat += utxo.satoshis;
 				ninputs++;
