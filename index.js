@@ -103,7 +103,7 @@ var providers = {
 	pushtx: {
 		mainnet: {
 			blockexplorer: function (hexTrans) {
-				return request.post('https://blockexplorer.com/api/tx/send').send('rawtx: ' + hexTrans);
+				return request.post('https://blockexplorer.com/api/tx/send').send('rawtx=' + hexTrans);
 			},
 			blockchain: function (hexTrans) {
 				return request.post('https://blockchain.info/pushtx').send('tx=' + hexTrans);
@@ -111,7 +111,7 @@ var providers = {
 		},
 		testnet: {
 			blockexplorer: function (hexTrans) {
-				return request.post('https://testnet.blockexplorer.com/api/tx/send').send('rawtx: ' + hexTrans);
+				return request.post('https://testnet.blockexplorer.com/api/tx/send').send('rawtx=' + hexTrans);
 			},
 			blockcypher: function (hexTrans) {
 				return request.post('https://api.blockcypher.com/v1/btc/test3/txs/push').send('{"tx":"' + hexTrans + '"}');
